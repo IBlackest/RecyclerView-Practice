@@ -100,7 +100,10 @@ class ContactsFragment : Fragment() {
             contactId.text = contact.id
             contactName.setText(contact.name)
             contactSecondName.setText(contact.secondName)
-            contactPhoneNumber.setText(if (contact.phoneNumber == 0L) "" else contact.phoneNumber.toString())
+            contactPhoneNumber.setText(
+                if (contact.phoneNumber == 0L) ""
+                else contact.phoneNumber.toString()
+            )
         }
     }
 
