@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/parentFragment">
+
+    <fragment
+        android:id="@+id/flagsFragment"
+        android:name="com.example.recyclerviewpractice.flags.ui.FlagsFragment"
+        android:label="fragment_flags"
+        tools:layout="@layout/fragment_flags" />
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.recyclerviewpractice.contacts.ui.ContactsFragment"
+        android:label="fragment_contacts"
+        tools:layout="@layout/fragment_contacts" >
+        <action
+            android:id="@+id/action_contactsFragment_to_editContactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/parentFragment"
+        android:name="com.example.recyclerviewpractice.ParentFragment"
+        android:label="fragment_parent"
+        tools:layout="@layout/fragment_parent" />
+</navigation>
