@@ -1,11 +1,11 @@
-package com.example.recyclerviewpractice.contacts.ui.adapter
+package com.example.recyclerviewpractice.ui.contacts.adapter
 
 import android.graphics.Color
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerviewpractice.domain.Model
 import com.example.recyclerviewpractice.R
-import com.example.recyclerviewpractice.contacts.model.Contact
 
 class ContactsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -14,8 +14,8 @@ class ContactsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val secondName: TextView = itemView.findViewById(R.id.second_name)
     private val phoneNumber: TextView = itemView.findViewById(R.id.phone_number)
 
-    fun onBind(contact: Contact) {
-        id.text = contact.id.toString()
+    fun onBind(contact: Model.Contact) {
+        id.text = contact.id
         name.text = contact.name
         secondName.text = contact.secondName
         phoneNumber.text = contact.phoneNumber.toString()

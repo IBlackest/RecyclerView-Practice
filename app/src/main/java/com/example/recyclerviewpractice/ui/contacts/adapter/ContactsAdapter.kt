@@ -1,4 +1,4 @@
-package com.example.recyclerviewpractice.contacts.ui.adapter
+package com.example.recyclerviewpractice.ui.contacts.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,16 +6,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerviewpractice.domain.Model
 import com.example.recyclerviewpractice.R
-import com.example.recyclerviewpractice.contacts.model.Contact
-import com.example.recyclerviewpractice.contacts.util.ContactsDiffUtilCallback
+import com.example.recyclerviewpractice.util.ContactsDiffUtilCallback
 
 class ContactsAdapter(private val onClickListener: ContactClickListener) :
     RecyclerView.Adapter<ContactsViewHolder>() {
 
-    var contacts: ArrayList<Contact> = arrayListOf()
-    private var oldContacts: ArrayList<Contact> = arrayListOf()
-    private var checkedContacts: MutableMap<Int, Contact> = mutableMapOf()
+    var contacts: ArrayList<Model.Contact> = arrayListOf()
+    private var oldContacts: ArrayList<Model.Contact> = arrayListOf()
+    private var checkedContacts: MutableMap<Int, Model.Contact> = mutableMapOf()
     private var diffUtilCallback = ContactsDiffUtilCallback(oldContacts, contacts)
 
     private var deleteButtonState = MutableLiveData<Boolean>()
@@ -67,6 +67,6 @@ class ContactsAdapter(private val onClickListener: ContactClickListener) :
     override fun getItemCount(): Int = contacts.size
 
     fun interface ContactClickListener {
-        fun onClick(contact: Contact, position: Int)
+        fun onClick(contact: Model.Contact, position: Int)
     }
 }

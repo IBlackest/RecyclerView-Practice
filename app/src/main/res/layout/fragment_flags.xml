@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".flags.ui.FlagsFragment">
+    tools:context=".ui.flags.FlagsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/flags_recycler_view"

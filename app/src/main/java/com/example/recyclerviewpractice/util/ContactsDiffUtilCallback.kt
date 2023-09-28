@@ -1,9 +1,9 @@
-package com.example.recyclerviewpractice.contacts.util
+package com.example.recyclerviewpractice.util
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.recyclerviewpractice.contacts.model.Contact
+import com.example.recyclerviewpractice.domain.Model
 
-class ContactsDiffUtilCallback(var oldList: List<Contact>, var newList: List<Contact>) :
+class ContactsDiffUtilCallback<T: Model>(var oldList: List<T>, var newList: List<T>) :
     DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldList.size
@@ -13,6 +13,6 @@ class ContactsDiffUtilCallback(var oldList: List<Contact>, var newList: List<Con
         oldList[oldItemPosition].id == newList[newItemPosition].id
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-        (oldList[oldItemPosition].name.equals(newList[newItemPosition]))
+        (oldList[oldItemPosition] == newList[newItemPosition])
 
 }

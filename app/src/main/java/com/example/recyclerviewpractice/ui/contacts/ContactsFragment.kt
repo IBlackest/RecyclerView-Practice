@@ -1,4 +1,4 @@
-package com.example.recyclerviewpractice.contacts.ui
+package com.example.recyclerviewpractice.ui.contacts
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.recyclerviewpractice.DataProvider
+import com.example.recyclerviewpractice.data.DataProvider
+import com.example.recyclerviewpractice.domain.Model
 import com.example.recyclerviewpractice.R
-import com.example.recyclerviewpractice.contacts.model.Contact
-import com.example.recyclerviewpractice.contacts.ui.adapter.ContactsAdapter
+import com.example.recyclerviewpractice.ui.contacts.adapter.ContactsAdapter
 import com.example.recyclerviewpractice.databinding.FragmentContactsBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
@@ -59,12 +59,9 @@ class ContactsFragment : Fragment() {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
             binding.apply {
                 grayOverlay.visibility = View.VISIBLE
-                contactId.text = contact.id.toString()
-                contactName.setText(contact.name)
-                contactSecondName.setText(contact.secondName)
-                contactPhoneNumber.setText(contact.phoneNumber.toString())
                 indexClicked = position
             }
+            setContactProperties(contact)
         }
 
         binding.contactsRecyclerView.apply {
@@ -88,17 +85,22 @@ class ContactsFragment : Fragment() {
 
         binding.addButton.setOnClickListener {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-            binding.apply {
-                grayOverlay.visibility = View.VISIBLE
-                contactId.text = ""
-                contactName.setText("")
-                contactSecondName.setText("")
-                contactPhoneNumber.setText("")
-            }
+            binding.grayOverlay.visibility = View.VISIBLE
+            setContactProperties(Model.Contact())
         }
 
         binding.createEditContact.setOnClickListener {
             createOrEditContact()
+        }
+    }
+
+    private fun setContactProperties(contact: Model.Contact) {
+        binding.apply {
+            grayOverlay.visibility = View.VISIBLE
+            contactId.text = contact.id
+            contactName.setText(contact.name)
+            contactSecondName.setText(contact.secondName)
+            contactPhoneNumber.setText(if (contact.phoneNumber == 0L) "" else contact.phoneNumber.toString())
         }
     }
 
@@ -107,13 +109,15 @@ class ContactsFragment : Fragment() {
             showToast()
         } else {
             if (binding.contactId.text.isEmpty()) {
-                val newContact = Contact(
-                    ++lastId,
+                val newId = lastId + 1
+                val newContact = Model.Contact(
+                    (newId).toString(),
                     binding.contactName.text.toString(),
                     binding.contactSecondName.text.toString(),
                     binding.contactPhoneNumber.text.toString().toLong(),
                     false
                 )
+                lastId = newId
                 contactsAdapter.contacts.add(newContact)
             } else {
                 val newContact = contactsAdapter.contacts[indexClicked].copy(
@@ -121,8 +125,10 @@ class ContactsFragment : Fragment() {
                     secondName = binding.contactSecondName.text.toString(),
                     phoneNumber = binding.contactPhoneNumber.text.toString().toLong(),
                 )
-                contactsAdapter.contacts[indexClicked] = newContact
-                contactsAdapter.notifyItemChanged(indexClicked)
+                contactsAdapter.apply {
+                    contacts[indexClicked] = newContact
+                    contactsAdapter.notifyItemChanged(indexClicked)
+                }
             }
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }

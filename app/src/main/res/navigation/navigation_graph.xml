@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/flagsFragment"
-        android:name="com.example.recyclerviewpractice.flags.ui.FlagsFragment"
+        android:name="com.example.recyclerviewpractice.ui.flags.FlagsFragment"
         android:label="fragment_flags"
         tools:layout="@layout/fragment_flags" />
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="com.example.recyclerviewpractice.contacts.ui.ContactsFragment"
+        android:name="com.example.recyclerviewpractice.ui.contacts.ContactsFragment"
         android:label="fragment_contacts"
         tools:layout="@layout/fragment_contacts" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/parentFragment"
-        android:name="com.example.recyclerviewpractice.ParentFragment"
+        android:name="com.example.recyclerviewpractice.ui.ParentFragment"
         android:label="fragment_parent"
         tools:layout="@layout/fragment_parent" />
 </navigation>

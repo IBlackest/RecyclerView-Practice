@@ -1,9 +1,9 @@
-package com.example.recyclerviewpractice
+package com.example.recyclerviewpractice.ui
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.recyclerviewpractice.contacts.ui.ContactsFragment
-import com.example.recyclerviewpractice.flags.ui.FlagsFragment
+import com.example.recyclerviewpractice.ui.contacts.ContactsFragment
+import com.example.recyclerviewpractice.ui.flags.FlagsFragment
 
 class PagerAdapter (
     fragment: Fragment

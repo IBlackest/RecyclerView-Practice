@@ -1,4 +1,4 @@
-package com.example.recyclerviewpractice.flags.ui
+package com.example.recyclerviewpractice.ui.flags
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,21 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recyclerviewpractice.databinding.FragmentFlagsBinding
-import com.example.recyclerviewpractice.DataProvider
-import com.example.recyclerviewpractice.flags.model.Flag
-import com.example.recyclerviewpractice.flags.ui.adapter.FlagsAdapter
+import com.example.recyclerviewpractice.data.DataProvider
+import com.example.recyclerviewpractice.ui.flags.adapter.FlagsAdapter
 
 class FlagsFragment : Fragment() {
 
     private lateinit var binding: FragmentFlagsBinding
-    private var flagsAdapter: FlagsAdapter = FlagsAdapter(object : FlagsAdapter.FlagClickListener {
-        override fun onCLick(flag: Flag, view: View) {
-        }
-
-        override fun onLongClick(flag: Flag, view: View): Boolean {
-            return true
-        }
-    })
+    private var flagsAdapter: FlagsAdapter = FlagsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +34,6 @@ class FlagsFragment : Fragment() {
             clear()
             addAll(DataProvider.getFlags())
         }
-        flagsAdapter.notifyDataSetChanged()
     }
 
     companion object {
