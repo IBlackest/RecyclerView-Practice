@@ -16,5 +16,4 @@ sealed class Model(open val id: String) {
         val flagUri: String,
         val isSelected: Boolean
     ) : Model(id)
-
 }
