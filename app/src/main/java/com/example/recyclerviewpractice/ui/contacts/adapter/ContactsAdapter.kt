@@ -14,7 +14,7 @@ class ContactsAdapter(private val onClickListener: ContactClickListener) :
     RecyclerView.Adapter<ContactsViewHolder>() {
 
     var contacts: ArrayList<Model.Contact> = arrayListOf()
-    private var oldContacts: ArrayList<Model.Contact> = arrayListOf()
+    var oldContacts: ArrayList<Model.Contact> = arrayListOf()
     private var checkedContacts: MutableMap<Int, Model.Contact> = mutableMapOf()
     private var diffUtilCallback = ContactsDiffUtilCallback(oldContacts, contacts)
 
@@ -27,19 +27,19 @@ class ContactsAdapter(private val onClickListener: ContactClickListener) :
         )
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
-        val contact = contacts[position]
+        val contact = contacts[holder.adapterPosition]
         holder.onBind(contact)
 
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(contact, position)
+            onClickListener.onClick(contact, holder.adapterPosition)
         }
 
         holder.itemView.setOnLongClickListener {
             val newContact = contact.copy(isSelected = !contact.isSelected)
-            contacts[position] = newContact
-            if (newContact.isSelected) checkedContacts[position] =
-                newContact else checkedContacts.remove(position)
-            notifyItemChanged(position)
+            contacts[holder.adapterPosition] = newContact
+            if (newContact.isSelected) checkedContacts[holder.adapterPosition] =
+                newContact else checkedContacts.remove(holder.adapterPosition)
+            notifyItemChanged(holder.adapterPosition)
             deleteButtonState.value = checkedContacts.isNotEmpty()
             true
         }
@@ -59,7 +59,6 @@ class ContactsAdapter(private val onClickListener: ContactClickListener) :
             newList = contacts
         }
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
-
         diffResult.dispatchUpdatesTo(this)
         deleteButtonState.value = false
     }

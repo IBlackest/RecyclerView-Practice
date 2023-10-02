@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="23"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:text="Name1"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/contact_id"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:text="SecondName1"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/name"
         app:layout_constraintTop_toTopOf="parent" />
 
