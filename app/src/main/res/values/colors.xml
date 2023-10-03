@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#A2BDD3</color>
+    <color name="gray_overlay">#801A1B22</color>
 </resources>

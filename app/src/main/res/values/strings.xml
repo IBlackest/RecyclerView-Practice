@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">RecyclerView Practice</string>
+    <string name="app_name">RecyclerViewPractice</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="flags">Флаги</string>
+    <string name="contacts">Контакты</string>
+    <string name="id">Id:</string>
+    <string name="name">Имя:</string>
+    <string name="second_name">Фамилия:</string>
+    <string name="phone_number">Сотовый:</string>
+    <string name="save">Сохранить</string>
+    <string name="empty_name">Поле "Имя" не должно быть пустым</string>
 </resources>
